@@ -1,4 +1,5 @@
 import string
+import re
 from pathlib import Path
 from pptx import Presentation
 
@@ -28,9 +29,7 @@ from pptx import Presentation
 # Iterate through slides in powerpoint file, grabe & write out HTML links in list form
 # @path: powerpoint file path
 # @file: file handle for writing HTML output to
-def write_slide(path, file):
-	file.write("<ul>\n")
-
+def write_slide(path, file):	
 	# Presentation iteration code derived from scanny's post on StackOverflow
 	# "python - Extract hyperlink from pptx - Stack Overflow" @ https://stackoverflow.com/a/67217499
 	prs = Presentation(path)
@@ -49,11 +48,13 @@ def write_slide(path, file):
 					run_text = run.text
 					if run_text is None:
 						run_text = address
+					# Clean up links with trailing #... sequences:
+					address = re.sub(r"#[^\"]+", "", address)
 					file.write("<li> <a href=\"" + address + "\">" + run_text + "</a> </li>\n")
 					print(run_text)
 					print(address)
 
-	file.write("</ul>\n")
+	
 
 
 # directory name
@@ -70,11 +71,14 @@ paths = Path(dirname).glob('**/*.pptx',)
  
 # iterating over all files
 for path in paths:
-    print("[ = = = " + str(path) + " = = = ]")
-    file.write("<h2>" + str(path) + "</h2>\n")
-    file.write("<p>\n")
-    write_slide(path, file)
-    file.write("</p>\n")
+	lesson_name = re.search(r"U\d+D\d+", str(path)).group(0)
+	print("[ = = = " + str(path) + " = = = ]")
+	file.write("<h2>" + str(path) + "</h2>\n")
+	file.write("<p>\n")
+	file.write("<ul id = \"" + lesson_name + "\">\n")
+	write_slide(path, file)
+	file.write("</ul>\n")
+	file.write("</p>\n")
 
 # Resources
 file.write("<h2>Resources</h2>\n")
