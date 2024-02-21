@@ -71,11 +71,12 @@ paths = Path(dirname).glob('**/*.pptx',)
  
 # iterating over all files
 for path in paths:
+	# pull out Unit-Day# designation
 	lesson_name = re.search(r"U\d+D\d+", str(path)).group(0)
 	print("[ = = = " + str(path) + " = = = ]")
 	file.write("<h2>" + str(path) + "</h2>\n")
 	file.write("<p>\n")
-	file.write("<ul id = \"" + lesson_name + "\">\n")
+	file.write("<ul id = \"" + lesson_name + "\" style=\"line-height:125%\">\n")
 	write_slide(path, file)
 	file.write("</ul>\n")
 	file.write("</p>\n")
