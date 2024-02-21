@@ -76,6 +76,7 @@ for path in paths:
 	print("[ = = = " + str(path) + " = = = ]")
 	file.write("<h2>" + str(path) + "</h2>\n")
 	file.write("<p>\n")
+	# each list gets id of Unit-Day#; also adjust line-height
 	file.write("<ul id = \"" + lesson_name + "\" style=\"line-height:125%\">\n")
 	write_slide(path, file)
 	file.write("</ul>\n")
