@@ -1,3 +1,4 @@
+# Dependency:
 # pip install beautifulsoup4
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -10,7 +11,7 @@ class LinkObject:
     self.extra_text = extra_text
     self.unit_id = unit_id
   def __str__(self):
-    return f"link: \"{self.link}\", extra: \"{self.extra_text}\", unitid: \"{self.unit_id}\""
+    return f"\"link\": \"{self.link}\", \"extra\": \"{self.extra_text}\", \"unitid\": \"{self.unit_id}\""
 
 # html "soup" -> dictionary
 def html_to_dict(dict, soup):
@@ -93,11 +94,11 @@ for path in paths:
 #  print(key, ":", value)
 
 file = open("output.json", "w", encoding="utf-8")
-file.write("{items: [\n")
+file.write("{\"items\": [\n")
 str_blob = ""
 for key, value in dict.items():
   print(key, ":", value)
-  str_blob += "\t{text: \"" + key.strip() + "\", " + value.__str__() + "},\n"
+  str_blob += "\t{\"text\": \"" + key.strip() + "\", " + value.__str__() + "},\n"
 
 # remove ",\n", add back "\n"
 str_blob = str_blob[:-2] + "\n"
