@@ -25,6 +25,9 @@
                         //data = JSON.parse(data);  // unnecessary
                         links_array = data.items;
                         elem.innerHTML += "<ul style=\"line-height:125%\">"
+                        // Odd results with for .. in with json array
+                        //for (var obj in links_array)
+                        //{                            console.log(".." + obj + "..." + obj.length);                        }
                         for (let i = 0; i < links_array.length; i++)
                         {
                             //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
