@@ -25,15 +25,19 @@
                         //data = JSON.parse(data);  // unnecessary
                         links_array = data.items;
                         elem.innerHTML += "<ul style=\"line-height:125%\">"
-                        // Odd results with for .. in with json array
-                        //for (var obj in links_array)
-                        //{                            console.log(".." + obj + "..." + obj.length);                        }
-                        for (let i = 0; i < links_array.length; i++)
+                        // for..of loop (rather than for..in)
+                        for (var obj of links_array)
                         {
-                            //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
-                            elem.innerHTML += "<li> <a href=\"" + data.items[i].link + "\">" + data.items[i].text + "</a> " + data.items[i].extra + "</li>";
-                            //data.items[i].unitid
+                            elem.innerHTML += "<li> <a href=\"" + obj.link + "\">" + obj.text + "</a> " + obj.extra + "</li>";
+                            //obj.unitid    // U#D#
                         }
+                        // index iteration
+                        //for (let i = 0; i < links_array.length; i++)
+                        //{
+                            //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
+                            //elem.innerHTML += "<li> <a href=\"" + data.items[i].link + "\">" + data.items[i].text + "</a> " + data.items[i].extra + "</li>";
+                            //data.items[i].unitid
+                        //}
                         elem.innerHTML += "</ul>"
                     })
                     .catch((error) => 
