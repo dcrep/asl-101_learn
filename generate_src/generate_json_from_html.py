@@ -23,7 +23,7 @@ def html_to_dict(dict, soup):
     if unitday:
       # okay, there's an id which means we are in a list with text + links for a powerpoint slide
       # debug:
-      print(unitday + ": Here GOES")
+      print("[= Unit " + unitday + " =] parsing...")
       # get all the list items
       lis = ul.find_all('li')
       for li in lis:
@@ -38,26 +38,34 @@ def html_to_dict(dict, soup):
           a_text = anchor.text.strip()
           if (len(a_text) != len(link_text)):
             link_extra_text = link_text[len(a_text):].strip()
-            print("<->" + link_extra_text)
-          
+            #print("<->" + link_extra_text)
+
+          # putting it all together:
+          print(unitday + ": " + link_text + ": URL: " + link + ", extra_text: " + link_extra_text)
+
           link_obj = LinkObject(link, link_extra_text, unitday)
           if (a_text in dict):
             #if (dict[a_text] != link):
             # link not the same??
+            mismatch = False
             if (dict[a_text].link != link):
               #print("Mismatch for key " + a_text + " in dictionary, prev link: " + dict[a_text] + ", new link: " + link)
-              print("Mismatch for key " + a_text + " in dictionary, prev linkObj: " + dict[a_text].link + ", new linkObj: " + link_obj.link)
-            elif (dict[a_text].extra_text == ""):
+              print("** " + unitday + " Mismatch link in key " + a_text + " in dictionary, 1st unit/day: " + dict[a_text].unit_id + ", prev link: " + dict[a_text].link + ", new link: " + link_obj.link)
+              # keeping previous link for now..
+              mismatch = True
+            if (dict[a_text].extra_text != link_extra_text):
+              print("*+ " + unitday + " Mismatch extra_text in key " + a_text + ": prev extra_text: " + dict[a_text].extra_text + ", new extra: " + link_extra_text)
               dict[a_text].extra_text = link_extra_text
-            else:
-              print("Dupe #x of " + a_text)
+              mismatch = True
+            if (not mismatch):
+              print("  ++ Dupe #x of " + a_text + ", 1st unit/day: " + dict[a_text].unit_id  + ", new: " + unitday)
           else:
-            dict[a_text] = link_obj
+            if (a_text.find(' ') == -1):
+              dict[a_text] = link_obj
+            else:
+              print("!! anchor '" + a_text + "' contains whitespace, not adding")
           #print(anchor.text)
-          # putting it all together:
-          print(unitday + ": " + link_text + ": URL: " + link)
-          # could potentially just store anchor.text and the remainder would be 'extra text'
-          # (to differentiate, strip whitespace, compare length, if different, grab text starting at end of anchor text)
+
   #print(ul)
 
 # -- html_to_dict()
@@ -96,6 +104,7 @@ for path in paths:
 file = open("output.json", "w", encoding="utf-8")
 file.write("{\"items\": [\n")
 str_blob = ""
+print("\n====  JSON OUTPUT ====\n")
 for key, value in dict.items():
   print(key, ":", value)
   str_blob += "\t{\"text\": \"" + key.strip() + "\", " + value.__str__() + "},\n"
