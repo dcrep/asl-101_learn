@@ -90,6 +90,7 @@
 	{"text": "COUNTRY", "link": "https://lifeprint.com/asl101/pages-signs/c/country.htm", "extra": "", "unitid": "U1D4"},
 	{"text": "THING", "link": "https://lifeprint.com/asl101/pages-signs/t/thing.htm", "extra": "", "unitid": "U1D4"},
 	{"text": "Languages", "link": "https://www.lifeprint.com/asl101/pages-signs/l/language.htm", "extra": "", "unitid": "U2D1"},
+	{"text": "ENGLISH", "link": "https://lifeprint.com/asl101/pages-signs/e/english.htm", "extra": "", "unitid": "U2D1"},
 	{"text": "FRENCH", "link": "https://lifeprint.com/asl101/pages-signs/f/french.htm", "extra": "", "unitid": "U2D1"},
 	{"text": "GERMAN", "link": "https://www.handspeak.com/word/899/", "extra": "", "unitid": "U2D1"},
 	{"text": "ITALIAN", "link": "https://www.handspeak.com/word/1165/", "extra": "", "unitid": "U2D1"},
@@ -235,5 +236,6 @@
 	{"text": "THAT", "link": "https://www.lifeprint.com/asl101/pages-signs/t/that.htm", "extra": "(+ THAT-ONE)", "unitid": "U3D3"},
 	{"text": "LOOK-LIKE", "link": "https://www.lifeprint.com/asl101/pages-signs/l/looklike.htm", "extra": "", "unitid": "U3D3"},
 	{"text": "FEEL", "link": "https://www.lifeprint.com/asl101/pages-signs/f/feel.htm", "extra": "", "unitid": "U3D3"},
-	{"text": "INTERESTING", "link": "https://www.lifeprint.com/asl101/pages-signs/i/interesting.htm", "extra": "", "unitid": "U3D3"}
+	{"text": "INTERESTING", "link": "https://www.lifeprint.com/asl101/pages-signs/i/interesting.htm", "extra": "", "unitid": "U3D3"},
+	{"text": "YESTERDAY", "link": "https://lifeprint.com/asl101/pages-signs/y/yesterday.htm", "extra": "", "unitid": "U3Dx"}
 ]}
