@@ -55,7 +55,8 @@ def html_to_dict(dict, soup):
               mismatch = True
             if (dict[a_text].extra_text != link_extra_text):
               print("*+ " + unitday + " Mismatch extra_text in key " + a_text + ": prev extra_text: " + dict[a_text].extra_text + ", new extra: " + link_extra_text)
-              dict[a_text].extra_text = link_extra_text
+              if (len(dict[a_text].extra_text) < len(link_extra_text)):
+                dict[a_text].extra_text = link_extra_text
               mismatch = True
             if (not mismatch):
               print("  ++ Dupe #x of " + a_text + ", 1st unit/day: " + dict[a_text].unit_id  + ", new: " + unitday)
