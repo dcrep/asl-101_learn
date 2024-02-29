@@ -144,7 +144,7 @@
 	{"text": "BUILDING", "link": "https://www.lifeprint.com/asl101/pages-signs/b/build.htm", "extra": "", "unitid": "U3D1"},
 	{"text": "CENTER", "link": "https://www.lifeprint.com/asl101/pages-signs/c/center.htm", "extra": "", "unitid": "U3D1"},
 	{"text": "OFFICE", "link": "https://www.youtube.com/watch?v=U9VrfCdyVGw", "extra": "", "unitid": "U3D1"},
-	{"text": "THEATER", "link": "https://www.youtube.com/watch?v=ZaxcUQkJ2a4", "extra": "", "unitid": "U3D1"},
+	{"text": "THEATER", "link": "https://www.youtube.com/watch?v=ZaxcUQkJ2a4", "extra": "(PLAY, DRAMA)", "unitid": "U3D1"},
 	{"text": "HELP", "link": "https://www.lifeprint.com/asl101/pages-signs/h/help.htm", "extra": "<♦> (directional sign)", "unitid": "U3D1"},
 	{"text": "TELL", "link": "https://www.lifeprint.com/asl101/pages-signs/t/tell.htm", "extra": "<♦> (directional sign)", "unitid": "U3D1"},
 	{"text": "SHOW", "link": "https://www.lifeprint.com/asl101/pages-signs/s/show.htm", "extra": "<♦> (directional sign)", "unitid": "U3D1"},
