@@ -249,8 +249,8 @@
 	{"text": "SANDAL", "link": "https://www.youtube.com/watch?v=A4RSlW_e10U", "extra": "", "unitid": "U4D1"},
 	{"text": "BALD", "link": "https://www.lifeprint.com/asl101/pages-signs/b/bald.htm", "extra": "", "unitid": "U4D1"},
 	{"text": "BLONDE", "link": "https://www.youtube.com/watch?v=KDAsg6UsH4o", "extra": "", "unitid": "U4D1"},
-	{"text": "Topics", "link": "https://www.handspeak.com/word/2244/", "extra": "", "unitid": "U4D1"},
-	{"text": "Comments", "link": "https://www.youtube.com/watch?v=MLbJdJzLHec", "extra": "", "unitid": "U4D1"},
+	{"text": "TOPIC(s)", "link": "https://www.handspeak.com/word/2244/", "extra": "", "unitid": "U4D1"},
+	{"text": "COMMENT(s)", "link": "https://www.youtube.com/watch?v=MLbJdJzLHec", "extra": "", "unitid": "U4D1"},
 	{"text": "SHORT-SLEEVED", "link": "https://www.handspeak.com/word/5201/", "extra": "", "unitid": "U3Dx"},
 	{"text": "LONG-SLEEVED", "link": "https://www.handspeak.com/word/5200/", "extra": "", "unitid": "U3Dx"},
 	{"text": "STRIPE", "link": "https://www.handspeak.com/word/4175/", "extra": "", "unitid": "U3Dx"},
@@ -261,5 +261,11 @@
 	{"text": "CURLY-HAIR", "link": "https://www.lifeprint.com/asl101//pages-signs/c/curly.htm", "extra": "", "unitid": "U3Dx"},
 	{"text": "BUZZ-CUT", "link": "https://www.lifeprint.com/asl101/pages-signs/b/buzz.htm", "extra": "", "unitid": "U3Dx"},
 	{"text": "DREADLOCKS", "link": "https://www.handspeak.com/word/5820/", "extra": "", "unitid": "U3Dx"},
-	{"text": "BRAID/HAIR-BRAIDS", "link": "https://www.handspeak.com/word/241/", "extra": "", "unitid": "U3Dx"}
+	{"text": "BRAID/HAIR-BRAIDS", "link": "https://www.handspeak.com/word/241/", "extra": "", "unitid": "U3Dx"},
+	{"text": "DARK", "link": "https://lifeprint.com/asl101/pages-signs/d/dark.htm", "extra": "", "unitid": "U4D2"},
+	{"text": "LIGHT", "link": "https://www.handspeak.com/word/1272/", "extra": "(also, layered hands moving out and up at elbows, inverse of DARK)", "unitid": "U4D2"},
+	{"text": "SKIN", "link": "https://www.youtube.com/watch?v=-IAvO3C9b8k", "extra": "", "unitid": "U4D2"},
+	{"text": "SOCKS", "link": "https://www.handspeak.com/word/2925/", "extra": "", "unitid": "U4D2"},
+	{"text": "MEAN", "link": "https://www.youtube.com/watch?v=b4_VyH3v27M", "extra": "", "unitid": "U4D2"},
+	{"text": "SOMETIMES", "link": "https://www.youtube.com/watch?v=u6cQNKM4Dbs", "extra": "", "unitid": "U4D2"}
 ]}
