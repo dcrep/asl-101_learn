@@ -8,28 +8,79 @@
 <body onload="pageLoaded()">
     <h1>ASL-101 Powerpoint Links Compilation (Christine Chynoweth)</h1>
     <a href="./index.html">Back to Index</a>
-    <h2>Complete Compiled Links, Week 1-7, Units 1-4 (from JSON)</h2>
+    <h2>Complete Compiled Links, Week 1-7, Units 1-4 (JSON, dynamic)</h2>
     <p id="filters">
-        <input type="checkbox" checked id="exlinks"><label for="extraLinks">Extra/Added Links</label>
+        <h3>Filters</h3>
+        <input type="checkbox" id="exlinks" checked><label for="extraLinks">Extra/Added Links</label>
+        <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label>
+        <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label>
+        <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label>
+        <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label>
     </p>
     <p id="output">
 
     </p>
     <script>
+        let links_array = [];
         let extra_link_checked = true;
-        const extraLinks = document.getElementById('exlinks');
         let filter_change = false;
-        checkbox.addEventListener('change', (event) => {
-            if (event.currentTarget.checked) {
-                // Checkbox is checked
-                alert('Checkbox is checked!');
+        // 0-indexed units (1 = 0, 2 = 1, ... 8 = 7)
+        let unit_ids_checked = [true, true, true, true, true, true, true, true];
+        const extraLinks = document.getElementById('exlinks');
+        extraLinks.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) // Checkbox is checked
                 extra_link_checked = true;
-            } else {
-                // Checkbox is unchecked
-                alert('Checkbox is unchecked!');
+            else    // Checkbox is unchecked                
                 extra_link_checked = false;
-            }
+            writeFilteredList();
         });
+
+        document.getElementById('unit1').addEventListener('change', unitCheckBoxClicked);
+        document.getElementById('unit2').addEventListener('change', unitCheckBoxClicked);
+        document.getElementById('unit3').addEventListener('change', unitCheckBoxClicked);
+        document.getElementById('unit4').addEventListener('change', unitCheckBoxClicked);
+
+        function unitCheckBoxClicked(event) {
+            const checkbox_id = event.target.id;
+            const id_num = Number(checkbox_id.charAt(checkbox_id.length - 1));
+            //console.log("event.target.id=" + checkbox_id + ", number = " + id_num);
+            if (event.currentTarget.checked)
+                unit_ids_checked[id_num - 1] = true;
+            else
+                unit_ids_checked[id_num - 1] = false;
+            
+            writeFilteredList();
+        }
+
+        function writeFilteredList() {
+            const elem = document.getElementById("output")
+            //data = JSON.parse(data);  // unnecessary
+            //links_array = data.items;
+            let listHTML = "<ul style=\"line-height:125%\">";
+            // for..of loop (rather than for..in!)
+            for (let obj of links_array) {
+                let include_item = true;
+                const unit_id = obj.unitid;
+                const unit_number = Number(unit_id.charAt(1));
+                if (unit_id.endsWith("x") && !extra_link_checked)
+                    include_item = false;
+                else if (!unit_ids_checked[unit_number - 1])
+                    include_item = false;
+                if (include_item)
+                    listHTML += "<li> <a href=\"" + obj.link + "\">" + obj.text + "</a> " + obj.extra + "</li>";
+                //else
+                //    console.log("Skipping " + obj.text + ", unitID " + obj.unitid);
+            }
+            // index iteration alternative (slower)
+            //for (let i = 0; i < links_array.length; i++)
+            //{
+            //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
+            //"<li> <a href=\"" + data.items[i].link + "\">" + data.items[i].text + "</a> " + data.items[i].extra + "</li>";
+            //data.items[i].unitid  // U#D#
+            //}
+            listHTML += "</ul>";
+            elem.innerHTML = listHTML;
+        }
         function pageLoaded() {
             fetch("link_dump/week1-7-output.json")
                 .then((res) => {
@@ -43,21 +94,7 @@
                     const elem = document.getElementById("output")
                     //data = JSON.parse(data);  // unnecessary
                     links_array = data.items;
-                    let listHTML = "<ul style=\"line-height:125%\">";
-                    // for..of loop (rather than for..in!)
-                    for (let obj of links_array) {
-                        listHTML += "<li> <a href=\"" + obj.link + "\">" + obj.text + "</a> " + obj.extra + "</li>";
-                        //obj.unitid    // U#D#
-                    }
-                    // index iteration alternative (slower)
-                    //for (let i = 0; i < links_array.length; i++)
-                    //{
-                    //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
-                    //"<li> <a href=\"" + data.items[i].link + "\">" + data.items[i].text + "</a> " + data.items[i].extra + "</li>";
-                    //data.items[i].unitid  // U#D#
-                    //}
-                    listHTML += "</ul>";
-                    elem.innerHTML = listHTML;
+                    writeFilteredList();
                 })
                 .catch((error) =>
                     console.error("Unable to fetch data:", error));
