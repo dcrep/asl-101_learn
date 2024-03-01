@@ -1,50 +1,70 @@
-<html>
-    <head>
-        <title>ASL Learning Practice</title>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ASL Learning Practice</title>
+</head>
 
-    <body>
-        <h1>ASL-101 Powerpoint Links Compilation (Christine Chynoweth)</h1>
-        <a href="./index.html">Back to Index</a>
-        <h2>Complete Compiled Links, Week 1-7, Units 1-4 (from JSON)</h2>
-        <p id="output">
-            
-        </p>
-        <script>
-            function fetchJSONData() {
-                fetch("link_dump/week1-7-output.json")
-                    .then((res) => {
-                        if (!res.ok) {
-                            throw new Error
-                                (`HTTP error! Status: ${res.status}`);
-                        }
-                        return res.json();
-                    })
-                    .then((data) => {
-                        const elem = document.getElementById("output")
-                        //data = JSON.parse(data);  // unnecessary
-                        links_array = data.items;
-                        elem.innerHTML += "<ul style=\"line-height:125%\">"
-                        // for..of loop (rather than for..in)
-                        for (var obj of links_array)
-                        {
-                            elem.innerHTML += "<li> <a href=\"" + obj.link + "\">" + obj.text + "</a> " + obj.extra + "</li>";
-                            //obj.unitid    // U#D#
-                        }
-                        // index iteration
-                        //for (let i = 0; i < links_array.length; i++)
-                        //{
-                            //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
-                            //elem.innerHTML += "<li> <a href=\"" + data.items[i].link + "\">" + data.items[i].text + "</a> " + data.items[i].extra + "</li>";
-                            //data.items[i].unitid
-                        //}
-                        elem.innerHTML += "</ul>"
-                    })
-                    .catch((error) => 
-                        console.error("Unable to fetch data:", error));
-            }
-            fetchJSONData();
-        </script>
-    </body>
+<body onload="pageLoaded()">
+    <h1>ASL-101 Powerpoint Links Compilation (Christine Chynoweth)</h1>
     <a href="./index.html">Back to Index</a>
+    <h2>Complete Compiled Links, Week 1-7, Units 1-4 (from JSON)</h2>
+    <p id="filters">
+        <input type="checkbox" checked id="exlinks"><label for="extraLinks">Extra/Added Links</label>
+    </p>
+    <p id="output">
+
+    </p>
+    <script>
+        let extra_link_checked = true;
+        const extraLinks = document.getElementById('exlinks');
+        let filter_change = false;
+        checkbox.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                // Checkbox is checked
+                alert('Checkbox is checked!');
+                extra_link_checked = true;
+            } else {
+                // Checkbox is unchecked
+                alert('Checkbox is unchecked!');
+                extra_link_checked = false;
+            }
+        });
+        function pageLoaded() {
+            fetch("link_dump/week1-7-output.json")
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error
+                            (`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    const elem = document.getElementById("output")
+                    //data = JSON.parse(data);  // unnecessary
+                    links_array = data.items;
+                    let listHTML = "<ul style=\"line-height:125%\">";
+                    // for..of loop (rather than for..in!)
+                    for (let obj of links_array) {
+                        listHTML += "<li> <a href=\"" + obj.link + "\">" + obj.text + "</a> " + obj.extra + "</li>";
+                        //obj.unitid    // U#D#
+                    }
+                    // index iteration alternative (slower)
+                    //for (let i = 0; i < links_array.length; i++)
+                    //{
+                    //console.log("#" + i + ": " + data.items[i].text + ", URL: " + data.items[i].link);
+                    //"<li> <a href=\"" + data.items[i].link + "\">" + data.items[i].text + "</a> " + data.items[i].extra + "</li>";
+                    //data.items[i].unitid  // U#D#
+                    //}
+                    listHTML += "</ul>";
+                    elem.innerHTML = listHTML;
+                })
+                .catch((error) =>
+                    console.error("Unable to fetch data:", error));
+        }
+        //fetchJSONData();
+    </script>
+</body>
+<a href="./index.html">Back to Index</a>
+
 </html>

@@ -61,7 +61,8 @@ def write_slide(path, file):
 dirname = '.'
 
 file = open("output.html", "w")
-file.write("<html>\n<head>\n<title>ASL [Week x] Powerpoint Links &amp; Practice (Christine Chynoweth)</title>\n</head>\n")
+file.write("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"utf-8\">\n")
+file.write("\t<title>ASL [Week x] Powerpoint Links &amp; Practice (Christine Chynoweth)</title>\n</head>\n")
 file.write("<h1>ASL-101 [Week x] Powerpoint Links &amp; Practice (Christine Chynoweth)</h1>\n")
 file.write("<a href=\"./index.html\">Back to Index</a>\n")
 file.write("<body>\n")
