@@ -17,7 +17,7 @@
           <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
           <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
           <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
-          <input type="checkbox" id="randomize" unchecked><label for="randomizeLinks">Randomize</label> &nbsp;
+          <input type="checkbox" id="randomize"><label for="randomizeLinks">Randomize</label> &nbsp;
         </form>
         </h3>
     </p>
@@ -30,8 +30,7 @@
         let filter_change = false;
         let randomized = false;
         // 0-indexed units (1 = 0, 2 = 1, ... 8 = 7)
-        let unit_ids_checked = [true, true, 
-                                true, true, true, true, true, true];
+        let unit_ids_checked = [true, true, true, true, true, true, true, true];
         const extraLinks = document.getElementById('exlinks');
         extra_link_checked = extraLinks.checked;
         extraLinks.addEventListener('change', (event) => {
