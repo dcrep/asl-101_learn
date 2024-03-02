@@ -11,28 +11,43 @@
     <h2>Complete Compiled Links, Week 1-7, Units 1-4 (JSON, dynamic)</h2>
     <p id="filters">
         <h3>Filters: &nbsp;
-        <input type="checkbox" id="exlinks" checked><label for="extraLinks">Extra/Added Links</label> &nbsp;
-        <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label> &nbsp;
-        <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
-        <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
-        <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
+        <form action="" method="get" class="form-example" autocomplete="off">
+          <input type="checkbox" id="exlinks" checked><label for="extraLinks">Extra/Added Links</label> &nbsp;
+          <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label> &nbsp;
+          <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
+          <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
+          <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
+          <input type="checkbox" id="randomize" unchecked><label for="randomizeLinks">Randomize</label> &nbsp;
+        </form>
         </h3>
     </p>
     <p id="output">
 
     </p>
     <script>
-        let links_array = [];
+        let original_links_array = [];
         let extra_link_checked = true;
         let filter_change = false;
+        let randomized = false;
         // 0-indexed units (1 = 0, 2 = 1, ... 8 = 7)
-        let unit_ids_checked = [true, true, true, true, true, true, true, true];
+        let unit_ids_checked = [true, true, 
+                                true, true, true, true, true, true];
         const extraLinks = document.getElementById('exlinks');
+        extra_link_checked = extraLinks.checked;
         extraLinks.addEventListener('change', (event) => {
             if (event.currentTarget.checked) // Checkbox is checked
                 extra_link_checked = true;
             else    // Checkbox is unchecked                
                 extra_link_checked = false;
+            writeFilteredList();
+        });
+
+        const randomizeLinks = document.getElementById('randomize');
+        randomizeLinks.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) // Checkbox is checked
+                randomized = true;
+            else    // Checkbox is unchecked                
+                randomized = false;
             writeFilteredList();
         });
 
@@ -52,11 +67,25 @@
             
             writeFilteredList();
         }
+        /* "How to randomize (shuffle) a JavaScript array? - Stack Overflow"
+            answer by Laurens Holst @ https://stackoverflow.com/a/12646864/23514245
+        */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
 
         function writeFilteredList() {
             const elem = document.getElementById("output")
             //data = JSON.parse(data);  // unnecessary
             //links_array = data.items;
+            let links_array = original_links_array.slice(); // or "links_array = [...original_links_array];"
+            if (randomized)
+                shuffleArray(links_array);
+
             let listHTML = "<ul style=\"line-height:125%\">";
             // for..of loop (rather than for..in!)
             for (let obj of links_array) {
@@ -83,6 +112,7 @@
             elem.innerHTML = listHTML;
         }
         function pageLoaded() {
+            //let original_links_array = [];
             fetch("link_dump/week1-7-output.json")
                 .then((res) => {
                     if (!res.ok) {
@@ -94,11 +124,12 @@
                 .then((data) => {
                     const elem = document.getElementById("output")
                     //data = JSON.parse(data);  // unnecessary
-                    links_array = data.items;
+                    original_links_array = data.items;
                     writeFilteredList();
                 })
                 .catch((error) =>
                     console.error("Unable to fetch data:", error));
+                console.log("Loaded!" + new Date() + document.getElementById("unit1").checked);
         }
         //fetchJSONData();
     </script>
