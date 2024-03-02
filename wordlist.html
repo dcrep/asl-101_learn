@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>ASL Learning Practice</title>
@@ -10,20 +11,20 @@
     <a href="./index.html">Back to Index</a>
     <h2>Complete Compiled Links, Week 1-7, Units 1-4 (JSON, dynamic)</h2>
     <p id="filters">
-        <h3>Filters: &nbsp;
+    <h3>Filters: &nbsp;
         <form action="" method="get" class="form-example" autocomplete="off">
-          <input type="checkbox" id="exlinks" checked><label for="extraLinks">Extra/Added Links</label> &nbsp;
-          <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label> &nbsp;
-          <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
-          <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
-          <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
-          <input type="checkbox" id="randomize"><label for="randomizeLinks">Randomize</label> &nbsp;
+            <input type="checkbox" id="exlinks" checked><label for="extraLinks">Extra/Added Links</label> &nbsp;
+            <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label> &nbsp;
+            <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
+            <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
+            <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
+            <input type="checkbox" id="randomize"><label for="randomizeLinks">Randomize</label> &nbsp;
         </form>
-        </h3>
+    </h3>
     </p>
-    <p id="output">
+    <div id="output">
 
-    </p>
+    </div>
     <script>
         let original_links_array = [];
         let extra_link_checked = true;
@@ -63,7 +64,7 @@
                 unit_ids_checked[id_num - 1] = true;
             else
                 unit_ids_checked[id_num - 1] = false;
-            
+
             writeFilteredList();
         }
         /* "How to randomize (shuffle) a JavaScript array? - Stack Overflow"
@@ -128,7 +129,7 @@
                 })
                 .catch((error) =>
                     console.error("Unable to fetch data:", error));
-                console.log("Loaded!" + new Date() + document.getElementById("unit1").checked);
+            console.log("Loaded!" + new Date() + document.getElementById("unit1").checked);
         }
         //fetchJSONData();
     </script>
