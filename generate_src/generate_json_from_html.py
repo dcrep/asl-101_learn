@@ -35,7 +35,8 @@ def html_to_dict(dict, soup):
           link = anchor.get('href')
           link_text = li.text.strip()   # anchor.text is just what's captured between <a> tags    
           link_extra_text = ""
-          a_text = anchor.text.strip()
+          # All UPPERCASE keys for ASL dictionary
+          a_text = anchor.text.strip().upper()
           if (len(a_text) != len(link_text)):
             link_extra_text = link_text[len(a_text):].strip()
             #print("<->" + link_extra_text)
@@ -53,7 +54,7 @@ def html_to_dict(dict, soup):
               print("** " + unitday + " Mismatch link in key " + a_text + " in dictionary, 1st unit/day: " + dict[a_text].unit_id + ", prev link: " + dict[a_text].link + ", new link: " + link_obj.link)
               # keeping previous link for now..
               mismatch = True
-            if (dict[a_text].extra_text != link_extra_text):
+            if (dict[a_text].extra_text.upper() != link_extra_text.upper()):
               print("*+ " + unitday + " Mismatch extra_text in key " + a_text + ": prev extra_text: " + dict[a_text].extra_text + ", new extra: " + link_extra_text)
               if (len(dict[a_text].extra_text) < len(link_extra_text)):
                 dict[a_text].extra_text = link_extra_text
