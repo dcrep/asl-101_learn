@@ -11,14 +11,21 @@
     <a href="./index.html">Back to Index</a>
     <h2>Complete Compiled Links, Week 1-7, Units 1-4 (JSON, dynamic)</h2>
     <p id="filters">
-    <h3>Filters: &nbsp;
-        <form action="" method="get" class="form-example" autocomplete="off">
+        <form action="" method="get" class="form-example" autocomplete="off"></form>
+            <h3>
+                Filters: &nbsp;
+        
             <input type="checkbox" id="exlinks" checked><label for="extraLinks">Extra/Added Links</label> &nbsp;
             <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label> &nbsp;
             <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
             <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
-            <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
+            <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;            
+            <br>
+            Order: &nbsp;
+            <input type="checkbox" id="byunit" checked disabled><label for="byUnit">Unit-Day Order</label> &nbsp;
+            <input type="checkbox" id="byalphanum"><label for="byAlphaNum">Alphabetical Order</label> &nbsp;
             <input type="checkbox" id="randomize"><label for="randomizeLinks">Randomize</label> &nbsp;
+            
         </form>
     </h3>
     </p>
@@ -30,6 +37,7 @@
         let extra_link_checked = true;
         let filter_change = false;
         let randomized = false;
+        let alpha_sort = false;
         // 0-indexed units (1 = 0, 2 = 1, ... 8 = 7)
         let unit_ids_checked = [true, true, true, true, true, true, true, true];
         const extraLinks = document.getElementById('exlinks');
@@ -42,12 +50,37 @@
             writeFilteredList();
         });
 
-        const randomizeLinks = document.getElementById('randomize');
-        randomizeLinks.addEventListener('change', (event) => {
-            if (event.currentTarget.checked) // Checkbox is checked
-                randomized = true;
-            else    // Checkbox is unchecked                
+        const unitSort = document.getElementById('byunit');
+        const alphaSort = document.getElementById('byalphanum');
+        const randomSort = document.getElementById('randomize');
+
+        alphaSort.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) { // Checkbox is checked
+                alpha_sort = true;
                 randomized = false;
+                randomSort.checked = false;
+                unitSort.checked = false;
+            } else {   // Checkbox is unchecked                
+                alpha_sort = false;
+                unitSort.checked = true;
+                // This shouldn't be needed if logic works out:
+                //randomSort.checked = false;
+            }
+            writeFilteredList();
+        });
+        
+        randomSort.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) { // Checkbox is checked
+                randomized = true;
+                alpha_sort = false;
+                alphaSort.checked = false;
+                unitSort.checked = false;
+            } else {   // Checkbox is unchecked                
+                randomized = false;
+                unitSort.checked = true;
+                // This shouldn't be needed if logic works out:
+                //alphaSort.checked = false;
+            }
             writeFilteredList();
         });
 
@@ -83,9 +116,19 @@
             //data = JSON.parse(data);  // unnecessary
             //links_array = data.items;
             let links_array = original_links_array.slice(); // or "links_array = [...original_links_array];"
-            if (randomized)
+            if (randomized) {
                 shuffleArray(links_array);
-
+            } else if (alpha_sort) {
+                links_array.sort( (a, b) => {
+                    // replace these characters:  ':', '\', '/', ' ', '-'
+                    const regex = /[\/\-\\:\s]/gi;
+                    const aLower = a.text.toLowerCase().replace(regex, '');
+                    const bLower = b.text.toLowerCase().replace(regex, '');                    
+                    if (aLower < bLower) { return -1; }
+                    if (aLower > bLower) { return 1; }
+                    return 0;
+                });
+            }
             let listHTML = "<ul style=\"line-height:125%\">";
             // for..of loop (rather than for..in!)
             for (let obj of links_array) {
