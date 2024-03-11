@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ASL Learning Practice</title>
+    <title>ASL Learning Practice - Vocabulary</title>
 </head>
 
 <body onload="pageLoaded()">
@@ -154,7 +154,7 @@
                 links_array.sort( (a, b) => {
                     /*  // Added sort_text to avoid doing these steps every run
                     // replace these characters:  )(:\/-, (+ whitespace)
-                    const regex = /[\/\-\\:\s()]/gi;
+                    const regex = /[^a-zA-Z\s]+/gi
                     const aLower = a.text.toLowerCase().replace(regex, '');
                     const bLower = b.text.toLowerCase().replace(regex, '');                    
                     if (aLower < bLower) { return -1; }
@@ -165,7 +165,8 @@
                     if (a.sort_text > b.sort_text) { return 1; }
                     return 0;
                 });
-            }
+            } // else {    // Unit-Day sort - DONE to original_links_array on load
+
             let listHTML = "<ul style=\"line-height:125%\">";
             // for..of loop (rather than for..in!)
             for (let obj of links_array) {
@@ -205,13 +206,21 @@
                     const elem = document.getElementById("output")
                     //data = JSON.parse(data);  // unnecessary
                     original_links_array = data.items;
-                    const regex = /[\/\-\\:\s()]/gi;
+                    const regex = /[^a-zA-Z\s]+/gi
+                    // const regex = /[\/\-\\:\s()]/gi;
                     // Add sort-text stripped of non-ascii characters/punctuation
                     for (let obj of original_links_array) {
                         // Consistency in case and ascii set
                         obj.sort_text = obj.text.toUpperCase().replace(regex, '');
                         //console.log(obj.sort_text);
                     }
+                    // Sort original array by Unit-Day order (could instead do when changing sort Order..)
+                    original_links_array.sort( (a, b) => {
+                        // All consistent "U#D#"
+                        if (a.unitid < b.unitid) { return -1; }
+                        if (a.unitid > b.unitid) { return 1; }
+                        return 0;
+                    });
                     writeFilteredList();
                 })
                 .catch((error) =>
