@@ -35,7 +35,7 @@ def html_to_dict(dict, soup):
           link = anchor.get('href')
           link_text = li.text.strip()   # anchor.text is just what's captured between <a> tags    
           link_extra_text = ""
-          # All UPPERCASE keys for ASL dictionary
+          # All UPPERCASE keys for ASL dictionary (might need to manually fix links with multiple definitions)
           a_text = anchor.text.strip().upper()
           if (len(a_text) != len(link_text)):
             link_extra_text = link_text[len(a_text):].strip()
@@ -45,10 +45,16 @@ def html_to_dict(dict, soup):
           print(unitday + ": " + link_text + ": URL: " + link + ", extra_text: " + link_extra_text)
 
           link_obj = LinkObject(link, link_extra_text, unitday)
+          lesson_addition = True
+          if (unitday[-1] == "x"):
+            lesson_addition = False
+
+          # Already added word?
           if (a_text in dict):
-            #if (dict[a_text] != link):
-            # link not the same??
+            # mismatch: If True, ignore or fixup. False - ignore
             mismatch = False
+
+            # link not the same??            
             if (dict[a_text].link != link):
               #print("Mismatch for key " + a_text + " in dictionary, prev link: " + dict[a_text] + ", new link: " + link)
               print("** " + unitday + " Mismatch link in key " + a_text + " in dictionary, 1st unit/day: " + dict[a_text].unit_id + ", prev link: " + dict[a_text].link + ", new link: " + link_obj.link)
@@ -59,9 +65,17 @@ def html_to_dict(dict, soup):
               if (len(dict[a_text].extra_text) < len(link_extra_text)):
                 dict[a_text].extra_text = link_extra_text
               mismatch = True
+            # Future-proof for manually added word/links: if previous find WAS manually entered but current isn't
+            if (lesson_addition and (dict[a_text].unit_id[-1] == "x")):
+              print("x-- Dupe of manually-added link with lesson-added link, previous unit/day: " + dict[a_text].unit_id + ", current: " + unitday)
+              # set to unit/day where it appears
+              dict[a_text].unit_id = unitday
+              mismatch = True
+            # No differences found? Pure duplicate
             if (not mismatch):
               print("  ++ Dupe #x of " + a_text + ", 1st unit/day: " + dict[a_text].unit_id  + ", new: " + unitday)
           else:
+            # Check for spaces (more thoroughly could check for ALL whitespace...)
             if (a_text.find(' ') == -1):
               dict[a_text] = link_obj
             else:
