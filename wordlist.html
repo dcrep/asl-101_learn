@@ -177,7 +177,7 @@
                     unit_ids_total_checked++;
             }
             //console.log("Total unit ids checked:" + unit_ids_total_checked);
-
+            let listCount = 0;
             let listHTML = "<ul style=\"line-height:125%\">";
             // for..of loop (rather than for..in!)
             for (let obj of links_array) {
@@ -198,8 +198,10 @@
                         include_item = false;
                 }
                     
-                if (include_item)
+                if (include_item) {
                     listHTML += "<li> <a href=\"" + obj.link + "\">" + obj.text + "</a> " + obj.extra + "</li>";
+                    listCount++;
+                }
                 //else
                 //    console.log("Skipping " + obj.text + ", unitID " + obj.unitid);
             }
@@ -212,6 +214,7 @@
             //}
             listHTML += "</ul>";
             elem.innerHTML = listHTML;
+            console.log("Total displayed elements: " + listCount);
         }
         function pageLoaded() {
             //let original_links_array = [];
