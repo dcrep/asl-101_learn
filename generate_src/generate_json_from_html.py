@@ -41,6 +41,7 @@ def html_to_dict(dict, soup):
             link_extra_text = link_text[len(a_text):].strip()
             #print("<->" + link_extra_text)
 
+          unitnumber = unitday.charAt(1);
           # putting it all together:
           print(unitday + ": " + link_text + ": URL: " + link + ", extra_text: " + link_extra_text)
 
@@ -64,6 +65,11 @@ def html_to_dict(dict, soup):
               print("*+ " + unitday + " Mismatch extra_text in key " + a_text + ": prev extra_text: " + dict[a_text].extra_text + ", new extra: " + link_extra_text)
               if (len(dict[a_text].extra_text) < len(link_extra_text)):
                 dict[a_text].extra_text = link_extra_text
+              mismatch = True
+            # If current unit # < stored unit #, put current unit # in (for earliest occurrence)
+            if (unitnumber < dict[a_text].unit_id.charAt(1)):
+              print("<-+ " + unitday + " Mismatch unitid in key " + a_text + ": prev unitday: " + dict[a_text].unit_id + ", new unit: " + unitday)
+              dict[a_text].unit_id = unitday
               mismatch = True
             # Future-proof for manually added word/links: if previous find WAS manually entered but current isn't
             if (lesson_addition and (dict[a_text].unit_id[-1] == "x")):
