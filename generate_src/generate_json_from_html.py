@@ -41,7 +41,7 @@ def html_to_dict(dict, soup):
             link_extra_text = link_text[len(a_text):].strip()
             #print("<->" + link_extra_text)
 
-          unitnumber = unitday.charAt(1);
+          unitnumber = unitday[1]
           # putting it all together:
           print(unitday + ": " + link_text + ": URL: " + link + ", extra_text: " + link_extra_text)
 
@@ -67,7 +67,7 @@ def html_to_dict(dict, soup):
                 dict[a_text].extra_text = link_extra_text
               mismatch = True
             # If current unit # < stored unit #, put current unit # in (for earliest occurrence)
-            if (unitnumber < dict[a_text].unit_id.charAt(1)):
+            if (unitnumber < dict[a_text].unit_id[1]):
               print("<-+ " + unitday + " Mismatch unitid in key " + a_text + ": prev unitday: " + dict[a_text].unit_id + ", new unit: " + unitday)
               dict[a_text].unit_id = unitday
               mismatch = True
