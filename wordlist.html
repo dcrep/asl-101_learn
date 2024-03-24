@@ -23,13 +23,14 @@
         <form action="" method="get" class="form-example" name="filterForm" autocomplete="off">
             <h3>
                 Filters: &nbsp;
-        
+            <button type="button" onclick="clearAllFields()">None</button> &nbsp;
+            <button type="button" onclick="checkAllFields()">All</button> &nbsp;<br>
+            <input type="checkbox" id="unit1" name="unitBoxes" checked><label for="unit1Links">Unit 1</label> &nbsp;
+            <input type="checkbox" id="unit2" name="unitBoxes" checked><label for="unit2Links">Unit 2</label> &nbsp;
+            <input type="checkbox" id="unit3" name="unitBoxes" checked><label for="unit3Links">Unit 3</label> &nbsp;
+            <input type="checkbox" id="unit4" name="unitBoxes" checked><label for="unit4Links">Unit 4</label> &nbsp;
+            <input type="checkbox" id="unit5" name="unitBoxes" checked><label for="unit5Links">Unit 5</label> &nbsp;
             <input type="checkbox" id="exlinks"><label for="extraLinks">Extra/Added Links</label> &nbsp;
-            <input type="checkbox" id="unit1" checked><label for="unit1Links">Unit 1</label> &nbsp;
-            <input type="checkbox" id="unit2" checked><label for="unit2Links">Unit 2</label> &nbsp;
-            <input type="checkbox" id="unit3" checked><label for="unit3Links">Unit 3</label> &nbsp;
-            <input type="checkbox" id="unit4" checked><label for="unit4Links">Unit 4</label> &nbsp;
-            <input type="checkbox" id="unit5" checked><label for="unit5Links">Unit 5</label> &nbsp;
             <br>
             Order: &nbsp;
 <!--        <input type="checkbox" id="byunitC" checked disabled><label for="byUnitC">Unit-Day Order</label> &nbsp;
@@ -140,6 +141,26 @@
                 unit_ids_checked[id_num - 1] = false;
 
             writeFilteredList();
+        }
+        function clearAllFields() {
+            const unitBoxes = document.filterForm.unitBoxes;
+            for (let i = 0; i < unitBoxes.length; i++) {
+                unitBoxes[i].checked = false;
+            }
+            for (let i = 0; i < unit_ids_checked.length; i++) {
+                unit_ids_checked[i] = false;
+            }
+            writeFilteredList();
+        }
+        function checkAllFields() {
+            const unitBoxes = document.filterForm.unitBoxes;
+            for (let i = 0; i < unitBoxes.length; i++) {
+                unitBoxes[i].checked = true;
+            }
+            for (let i = 0; i < unit_ids_checked.length; i++) {
+                unit_ids_checked[i] = true;
+            }
+            writeFilteredList(); 
         }
 
 
