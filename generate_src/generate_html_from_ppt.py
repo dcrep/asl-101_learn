@@ -62,9 +62,9 @@ dirname = '.'
 
 file = open("output.html", "w")
 file.write("<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n\t<meta charset=\"utf-8\">\n")
-file.write("\t<title>ASL [Week x] Powerpoint Links &amp; Practice (Christine Chynoweth)</title>\n</head>\n")
+file.write("\t<title>ASL [Week x] Powerpoint Links &amp; Practice)</title>\n</head>\n")
 file.write("<body>\n")
-file.write("<h1>ASL-101 [Week x] Powerpoint Links &amp; Practice (Christine Chynoweth)</h1>\n")
+file.write("<h1>ASL-101 [Week x] Powerpoint Links &amp; Practice (w/Professsor Chynoweth)</h1>\n")
 file.write("<a href=\"./index.html\">Back to Index</a>\n")
  
 # giving directory name to Path() function

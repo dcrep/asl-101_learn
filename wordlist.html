@@ -30,6 +30,7 @@
             <input type="checkbox" id="unit3" name="unitBoxes" checked><label for="unit3Links">Unit 3</label> &nbsp;
             <input type="checkbox" id="unit4" name="unitBoxes" checked><label for="unit4Links">Unit 4</label> &nbsp;
             <input type="checkbox" id="unit5" name="unitBoxes" checked><label for="unit5Links">Unit 5</label> &nbsp;
+            <input type="checkbox" id="unit6" name="unitBoxes" checked><label for="unit6Links">Unit 6</label> &nbsp;
             <input type="checkbox" id="exlinks"><label for="extraLinks">Extra/Added Links</label> &nbsp;
             <br>
             Order: &nbsp;
@@ -54,7 +55,7 @@
         let randomized = false;
         let alpha_sort = false;
         // 0-indexed units (1 = 0, 2 = 1, ... 8 = 7)
-        let unit_ids_checked = [true, true, true, true, true, false, false, false];
+        let unit_ids_checked = [true, true, true, true, true, true, false, false];
 
         const extraLinks = document.getElementById('exlinks');
         extra_link_checked = extraLinks.checked;
@@ -130,6 +131,7 @@
         document.getElementById('unit3').addEventListener('change', unitCheckBoxClicked);
         document.getElementById('unit4').addEventListener('change', unitCheckBoxClicked);
         document.getElementById('unit5').addEventListener('change', unitCheckBoxClicked);
+        document.getElementById('unit6').addEventListener('change', unitCheckBoxClicked);
 
         function unitCheckBoxClicked(event) {
             const checkbox_id = event.target.id;
@@ -248,7 +250,7 @@
         }
         function pageLoaded() {
             //let original_links_array = [];
-            fetch("link_dump/week1-10-output.json")
+            fetch("link_dump/week1-11-output.json")
                 .then((res) => {
                     if (!res.ok) {
                         throw new Error
