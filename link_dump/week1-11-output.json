@@ -106,7 +106,7 @@
 	{"text": "WHY", "link": "https://www.lifeprint.com/asl101/pages-signs/w/why.htm", "extra": "", "unitid": "U2D1"},
 	{"text": "TAKE-UP/ADOPT", "link": "https://www.lifeprint.com/asl101/pages-signs/t/take-up.htm", "extra": "", "unitid": "U2D1"},
 	{"text": "EXPLAIN/DESCRIBE", "link": "https://www.lifeprint.com/asl101/pages-signs/e/explain.htm", "extra": "", "unitid": "U2D1"},
-	{"text": "MORE", "link": "https://www.lifeprint.com/asl101/pages-signs/m/more.htm", "extra": "(raise finger for #)", "unitid": "U2D1"},
+	{"text": "MORE", "link": "https://www.lifeprint.com/asl101/pages-signs/m/more.htm", "extra": "(number 1-9 use fingers)", "unitid": "U2D1"},
 	{"text": "THERE", "link": "https://www.lifeprint.com/asl101/pages-signs/t/there.htm", "extra": "", "unitid": "U2D1"},
 	{"text": "HERE", "link": "https://www.lifeprint.com/asl101/pages-signs/h/here.htm", "extra": "", "unitid": "U2D1"},
 	{"text": "SPEAK/TALK", "link": "https://www.handspeak.com/word/2040/", "extra": "", "unitid": "U2D1"},
@@ -310,7 +310,7 @@
 	{"text": "FRIDAY", "link": "https://www.youtube.com/watch?v=ed00ZvaLeo4", "extra": "", "unitid": "U5D1"},
 	{"text": "SATURDAY", "link": "https://www.youtube.com/watch?v=6aYPttH2RzM", "extra": "", "unitid": "U5D1"},
 	{"text": "SUNDAY", "link": "https://www.youtube.com/watch?v=Gh5pD88Vgw0", "extra": "", "unitid": "U5D1"},
-	{"text": "DAY", "link": "https://www.lifeprint.com/asl101/pages-signs/d/day.htm", "extra": "", "unitid": "U5D1"},
+	{"text": "DAY", "link": "https://www.lifeprint.com/asl101/pages-signs/d/day.htm", "extra": "(number 1-9 use fingers)", "unitid": "U5D1"},
 	{"text": "ALL-DAY", "link": "https://www.youtube.com/watch?v=GHxNs_IK3Ak", "extra": "", "unitid": "U5D1"},
 	{"text": "ALL-MORNING", "link": "https://www.youtube.com/watch?v=PKrGMspKng4", "extra": "", "unitid": "U5D1"},
 	{"text": "ALL-AFTERNOON", "link": "https://www.youtube.com/watch?v=QuafKMvHhsM", "extra": "", "unitid": "U5D1"},
@@ -428,5 +428,9 @@
 	{"text": "MOVIE", "link": "https://www.lifeprint.com/asl101/pages-signs/m/movie.htm", "extra": "", "unitid": "U6D2"},
 	{"text": "CLOSE-TO", "link": "https://www.youtube.com/watch?v=Zv7n5RlK6W4", "extra": "", "unitid": "U6D2"},
 	{"text": "WHAT-HAPPENED", "link": "https://www.youtube.com/watch?v=edP9ClwBqdo", "extra": "", "unitid": "U6D2"},
-	{"text": "RECENT", "link": "https://www.handspeak.com/word/3493/", "extra": "", "unitid": "U6D2"}
+	{"text": "RECENT", "link": "https://www.handspeak.com/word/3493/", "extra": "", "unitid": "U6D2"},
+	{"text": "DAY_v2", "link": "https://www.lifeprint.com/asl101/pages-signs/d/day2.htm", "extra": "", "unitid": "U6D2b"},
+	{"text": "STILL", "link": "https://www.youtube.com/watch?v=bfXH1Yolqys", "extra": "", "unitid": "U6D2b"},
+	{"text": "WEDDING", "link": "https://www.youtube.com/watch?v=AmOkwl1sVDs", "extra": "", "unitid": "U6D2b"},
+	{"text": "SINCE/UNTIL-NOW/HAVE-BEEN", "link": "https://www.youtube.com/watch?v=nCqTUpweCc4", "extra": "", "unitid": "UU6D2bD2"}
 ]}
